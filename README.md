@@ -28,29 +28,16 @@ pip install torch torchvision scipy numpy tqdm
    Ensure that your dataset (e.g., ShapeNetCore) is in the correct format and located at the path specified in the `--dataset_path` argument. The dataset should be in `.h5` format for use with the `ShapeNetCore` class.
 
 2. **Download the pretrained models**:
-   - Download the pretrained FlowVAE model and save it to the path specified in the `--ckpt` argument (default is `./pretrained/GEN_chair.pt`).
-   - The PointNet model (`best_model.pth`) should also be downloaded and placed in the working directory.
+   - Download the pretrained FlowVAE model and save it to the path specified in the `--ckpt` argument (default is `./pretrained/xxx.pt`).
+
 
 3. **Set the desired arguments**:
    The script uses argparse to specify various parameters. You can modify them in the command line or adjust the default values in the script.
 
    Example:
    ```bash
-   python script.py --ckpt ./pretrained/GEN_chair.pt --dataset_path ./data/modelnet.h5 --batch_size 1 --sample_num_points 2048 --normalize shape_bbox
+   python script.py --ckpt ./pretrained/GEN_chair.pt --dataset_path ./data/modelnet.h5 --batch_size 1 --sample_num_points 2048
    ```
-
-   **Arguments**:
-   - `--ckpt`: Path to the pretrained FlowVAE model (e.g., `./pretrained/GEN_chair.pt`).
-   - `--categories`: List of categories to sample from in the dataset (e.g., `['desk1']`).
-   - `--save_dir`: Directory to save the output files (e.g., `./results`).
-   - `--device`: Device to run the model on (e.g., `cuda` or `cpu`).
-   - `--latent_dim`: Latent dimension for the VAE model (default is `256`).
-   - `--dataset_path`: Path to the dataset (e.g., `./data/modelnet.h5`).
-   - `--batch_size`: Batch size for data loading (default is `1`).
-   - `--scale_mode`: Mode for scaling the point clouds (e.g., `shape_unit` or `shape_bbox`).
-   - `--sample_num_points`: Number of points to sample from the point cloud (default is `2048`).
-   - `--normalize`: Mode for normalization of point clouds (e.g., `shape_unit`, `shape_bbox`, or `None`).
-   - `--seed`: Random seed for reproducibility (default is `500`).
 
 4. **Run the script**:
    After setting the arguments, you can run the script. The script will:
@@ -70,13 +57,6 @@ pip install torch torchvision scipy numpy tqdm
    - **Reference Point Clouds**: The reference point clouds (from the dataset) will be saved as `ref.npy`.
    - **Log File**: Performance metrics such as MSE, CDC, CD, and HD will be logged in a log file in the `save_dir`.
 
-   Example log output:
-   ```
-   MSE: 0.123456789012
-   CDC: 0.987654321098
-   CD: 0.234567890123
-   HD: 0.345678901234
-   class: x: 3, ref: 5
    ```
 
 6. **Adversarial Attack**:
